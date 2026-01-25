@@ -7,6 +7,8 @@ import BreadCrumb from '../Components/BreadCrumb';
 import Paginate from '../Components/Paginate';
 import Skeleton from '../Components/Skeleton';
 import axios from 'axios';
+import { useDispatch } from 'react-redux'
+import { AllProducts } from '../ProductSlice';
 
 
 
@@ -14,16 +16,10 @@ const Product = () => {
 
   const [product, setProduct] = useState([])
   const [loading, setLoading] = useState(false)
-  const [category, setCategory] = useState({})
+  const [category, setCategory] = useState([])
 
-  // useEffect(() => {
-  //   fetch('https://dummyjson.com/products')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setProduct(data.products)
-  //       setLoading(true)
-  //     });
-  // },[])
+
+  const dispatch = useDispatch()
 
 
   async function getAllData(){
@@ -31,6 +27,7 @@ const Product = () => {
     .then((res)=>{
       setProduct(res.data.products)
       setLoading(true)
+      dispatch(AllProducts(res.data.products))
     })
   }
 
@@ -47,6 +44,13 @@ const Product = () => {
   },[product])
 
 
+  const handleFilter = (item) =>{
+    const FilterItem = product.filter((categoryItem) => categoryItem.category == item)
+  }
+
+
+
+
 
   return (
     <>
@@ -57,9 +61,9 @@ const Product = () => {
             <div>
               <h3 className='text-start font-Poppins font-bold text-xl'>Shop by Category</h3>
               <ul className='pt-5 pe-4.5 font-Poppins flex flex-col gap-4'>
-                { product.map((item)=>{
+                { category.map((item,idx)=>{
                   return(
-                    <li className='flex justify-between w-54.25'>{item.category}</li>
+                    <li key={idx} onClick={()=>handleFilter(item)} className='flex justify-between w-54.25 cursor-pointer'>{item}</li>
                   )
                 })
                 }
@@ -76,7 +80,7 @@ const Product = () => {
             <Flex className='flex-wrap justify-between'>
               { 
                 loading ?
-                <Paginate itemsPerPage={6} products={product} />
+                <Paginate itemsPerPage={6} />
                 :
                 <>
                  <Skeleton/>
