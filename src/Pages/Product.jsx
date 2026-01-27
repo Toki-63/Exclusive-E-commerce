@@ -8,7 +8,7 @@ import Paginate from '../Components/Paginate';
 import Skeleton from '../Components/Skeleton';
 import axios from 'axios';
 import { useDispatch } from 'react-redux'
-import { AllProducts } from '../ProductSlice';
+import { FilterReducer, GetProducts } from '../ProductSlice';
 
 
 
@@ -17,35 +17,37 @@ const Product = () => {
   const [product, setProduct] = useState([])
   const [loading, setLoading] = useState(false)
   const [category, setCategory] = useState([])
+  const [value, setValue] = useState(6)
 
 
   const dispatch = useDispatch()
 
 
-  async function getAllData(){
+  async function getAllData() {
     await axios.get('https://dummyjson.com/products')
-    .then((res)=>{
-      setProduct(res.data.products)
-      setLoading(true)
-      dispatch(AllProducts(res.data.products))
-    })
+      .then((res) => {
+        setProduct(res.data.products)
+        setLoading(true)
+        dispatch(GetProducts(res.data.products))
+      })
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getAllData()
-  },[])
+  }, [])
 
 
 
 
-  useEffect(()=>{
-    const UniqueCategory = [... new Set(product.map((item)=>item.category))]
+  useEffect(() => {
+    const UniqueCategory = [... new Set(product.map((item) => item.category))]
     setCategory(UniqueCategory)
-  },[product])
+  }, [product])
 
 
-  const handleFilter = (item) =>{
+  const handleFilter = (item) => {
     const FilterItem = product.filter((categoryItem) => categoryItem.category == item)
+    dispatch(FilterReducer(FilterItem))
   }
 
 
@@ -55,15 +57,28 @@ const Product = () => {
   return (
     <>
       <Container>
-        <BreadCrumb className='mt-20' />
+        <BreadCrumb className='mt-20 mb-12.5' />
+        <div className='flex justify-between'>
+          <h3 className='text-start font-Poppins font-bold text-xl'>Shop by Category</h3>
+          <div className="flex items-center gap-2 lg:mb-3.5 -mb-3.75">
+            <h2>Show:</h2>
+            <select onChange={(e)=>{setValue(e.target.value)}} className="py-1 px-2 border border-gray-300 rounded-md">
+              <option value='6' >6</option>
+              <option value='9' >9</option>
+              <option value='12' >12</option>
+            </select>
+          </div>
+        </div>
         <Flex className='mt-12.5'>
           <div className="w-[20%]">
             <div>
-              <h3 className='text-start font-Poppins font-bold text-xl'>Shop by Category</h3>
               <ul className='pt-5 pe-4.5 font-Poppins flex flex-col gap-4'>
-                { category.map((item,idx)=>{
-                  return(
-                    <li key={idx} onClick={()=>handleFilter(item)} className='flex justify-between w-54.25 cursor-pointer'>{item}</li>
+
+                <li onClick={() => { dispatch(GetProducts(product)) }} className='flex justify-between w-54.25 cursor-pointer capitalize'>All Products</li>
+
+                {category.map((item, idx) => {
+                  return (
+                    <li key={idx} onClick={() => handleFilter(item)} className='flex justify-between w-54.25 cursor-pointer capitalize'>{item}</li>
                   )
                 })
                 }
@@ -78,18 +93,18 @@ const Product = () => {
           </div>
           <div className='w-[80%] relative'>
             <Flex className='flex-wrap justify-between'>
-              { 
+              {
                 loading ?
-                <Paginate itemsPerPage={6} />
-                :
-                <>
-                 <Skeleton/>
-                 <Skeleton/>
-                 <Skeleton/>
-                 <Skeleton/>
-                 <Skeleton/>
-                 <Skeleton/>
-                </>
+                  <Paginate itemsPerPage={value} />
+                  :
+                  <>
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                  </>
               }
 
             </Flex>

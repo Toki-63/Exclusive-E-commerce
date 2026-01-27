@@ -10,8 +10,9 @@ function Items({ currentItems }) {
     return (
         <>
       {currentItems &&
-        currentItems.map((item) => (
+        currentItems.map((item,idx) => (
             <Card
+            key={idx}
             ImgSrc={item.thumbnail}
             title={item.title}
             price={Math.round(item.price-(item.price * item.discountPercentage)/100)}
@@ -53,7 +54,7 @@ const Paginate = ({ itemsPerPage}) => {
         previousLabel=""
         renderOnZeroPageCount={null}
         className='absolute -bottom-20 left-0 flex gap-4'
-        pageClassName='bg-black text-white px-6 py-[2px]'
+        pageClassName='bg-black text-white px-6 py-[2px] cursor-pointer'
       />
     </>
   )
