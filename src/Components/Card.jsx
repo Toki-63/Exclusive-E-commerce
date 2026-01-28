@@ -4,11 +4,19 @@ import { CiHeart } from "react-icons/ci";
 import { IoEyeOutline } from "react-icons/io5";
 import Button from './Button';
 import { Rate } from 'antd';
+import { useNavigate } from "react-router";
 
 
-const Card = ({ImgSrc,title,price,discount,review,percentage,rating}) => {
+
+
+const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id}) => {
+  let navigate = useNavigate();
+  
+  const handleDetails = () => {
+    navigate(`/productDetails/${id}`)
+  }
   return (
-    <div className='w-67.5 group'>
+    <div className='w-67.5 group' onClick={handleDetails}>
       <div className="card relative rounded-sm overflow-hidden">
         <img src={ImgSrc} alt="" />
         <h5 className='absolute top-3 left-3 py-1 px-3 bg-prime text-xs text-white rounded-sm'>-{percentage}%</h5>

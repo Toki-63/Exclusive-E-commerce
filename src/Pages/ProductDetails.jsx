@@ -1,0 +1,152 @@
+import React, { useEffect, useState } from 'react'
+import Container from '../Components/Container'
+import BreadCrumb from '../Components/BreadCrumb';
+import { useParams } from "react-router";
+import Console2 from '../assets/Console2.png'
+import consolewhite from '../assets/consolewhite.png'
+import Size from '../Components/Size'
+import { FiHeart } from "react-icons/fi";
+import { TbTruckDelivery } from "react-icons/tb";
+import { HiOutlineArrowPathRoundedSquare } from "react-icons/hi2";
+import { Rate } from 'antd';
+
+const ProductDetails = () => {
+  let params = useParams();
+
+  const [product, setProduct] = useState([])
+
+
+   async function getAllData() {
+    await axios.get(`https://dummyjson.com/products/${id}`)
+      .then((res) => {
+        setProduct(res.data.products)
+        
+      })
+  }
+
+  useEffect(() => {
+    getAllData()
+  }, [])
+
+  return (
+    <>
+      <Container>
+        <div className='mt-5 mb-20'>
+          <BreadCrumb />
+          
+        </div>
+        <div className='flex gap-7.5'>
+                    <div className='space-y-4'>
+                        
+                                    <div className='bg-[#f5f5f5] rounded-sm '>
+                                        <img className='w-42.5 h-34.5' src={Console2} alt="" />
+                                    </div>
+                               
+                    </div>
+
+                    <div className='bg-[#f5f5f5] flex justify-between items-center'>
+                        <img className='w-125 h-150' src={consolewhite} alt="" />
+                    </div>
+
+                    <div className='w-99.75'>
+                        <div>
+                            <h2 className='font-inter font-semibold text-2xl'>Havic HV G-92 Gamepad</h2>
+                        </div>
+
+                        <div className='mt-4 flex gap-6'>
+                            <div className='flex gap-2 text-[#FFAD33]'>
+                               <Rate allowHalf  defaultValue />
+                            </div>
+                            <div>
+                                <h4 className='text-[#807b7b] font-Poppins text-sm'>
+                                    5
+                                </h4>
+                            </div>
+                            <div className='border-[#807b7b] border-r-2'></div>
+                            <div>
+                                <h4 className='text-[#00FF66] font-Poppins text-sm'>In Stock</h4>
+                            </div>
+                        </div>
+
+                        <div className='border-b-2 border-secondary mt-4'>
+                            <h4 className='text-2xl font-inter'>$192.00</h4>
+                            <p className='text-sm font-poppins py-6'>PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.</p>
+                        </div>
+
+                        <div className="flex items-center gap-4 py-6">
+                            <h2 className="text-[20px]">Colours:</h2>
+                            <div className="w-6 h-6 rounded-full border-2 border-black flex items-center justify-center">
+                                <div className="w-4 h-4 rounded-full bg-blue-300" />
+                            </div>
+                            <div className="w-6 h-6 rounded-full bg-rose-500" />
+                        </div>
+
+                        <div className='flex gap-6 items-center'>
+                            <h2 className='text-xl font-inter'>Size:</h2>
+                            <Size
+                                heading='xs'
+                            />
+                            <Size
+                                heading='s'
+                            />
+                            <Size
+                                heading='m'
+                            />
+                            <Size
+                                heading='l'
+                            />
+                            <Size
+                                heading='xl'
+                            />
+                        </div>
+
+                        <div className='flex mt-6 gap-4'>
+                            <div className="flex items-center justify-between border border-gray-300 rounded-md overflow-hidden w-max text-lg font-medium">
+                                <button className="w-10 h-10 border-r border-secondary hover:bg-prime">−</button>
+                                <h2 className="w-10 h-10 flex items-center justify-center hover:bg-prime">
+                                    2
+                                </h2 >
+                                <button className="w-10 h-10 border-l border-secondary hover:bg-prime rounded-r-md">
+                                    +
+                                </button>
+
+                            </div>
+
+                            <button className="w-[165px] h-[44px] bg-prime hover:bg-[#9d0606] text-white rounded-md  ">Buy Now</button>
+
+                            <div className='flex justify-center items-center w-10 h-10 border-2 border-secondary hover:bg-prime hover:text-white rounded-md '>
+                                <FiHeart />
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className='border-2 border-secondary mt-6'>
+                                <div className='flex gap-6 mt-4  border-b-2 border-secondary pb-4'>
+                                    <div className='mt-2.5 text-2xl pl-4'>
+                                        <TbTruckDelivery />
+                                    </div>
+                                    <div>
+                                        <h4 className='font-medium'>Free Delivery</h4>
+                                        <p className='text-[12px] border-b'>Enter your postal code for Delivery Availability</p>
+                                    </div>
+                                </div>
+
+                                <div className='flex gap-6 pt-4 pb-6 '>
+                                    <div className='mt-2.5 text-2xl pl-4'>
+                                        <HiOutlineArrowPathRoundedSquare />
+                                    </div>
+                                    <div>
+                                        <h4 className='font-medium'>Return Delivery</h4>
+                                        <p className='text-[12px]'>Free 30 Days Delivery Returns. Details</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+      </Container>
+    </>
+  )
+}
+
+export default ProductDetails
