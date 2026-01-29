@@ -9,18 +9,20 @@ import { FiHeart } from "react-icons/fi";
 import { TbTruckDelivery } from "react-icons/tb";
 import { HiOutlineArrowPathRoundedSquare } from "react-icons/hi2";
 import { Rate } from 'antd';
+import axios from 'axios';
 
 const ProductDetails = () => {
-  let params = useParams();
+  let {id} = useParams();
 
   const [product, setProduct] = useState([])
+  const [productImages, setProductImages] = useState([])
 
 
    async function getAllData() {
     await axios.get(`https://dummyjson.com/products/${id}`)
       .then((res) => {
-        setProduct(res.data.products)
-        
+        setProduct(res.data)
+        setProductImages(res.data.images)
       })
   }
 
@@ -38,24 +40,32 @@ const ProductDetails = () => {
         <div className='flex gap-7.5'>
                     <div className='space-y-4'>
                         
-                                    <div className='bg-[#f5f5f5] rounded-sm '>
-                                        <img className='w-42.5 h-34.5' src={Console2} alt="" />
+                                    <div className=' rounded-sm flex flex-col gap-4'>
+                                        {
+                                            productImages.map((item)=>{
+                                                return(
+
+                                                    <img className='w-42.5 h-34.5' src={item} alt="" />
+
+                                                )
+                                            })
+                                        }
                                     </div>
                                
                     </div>
 
                     <div className='bg-[#f5f5f5] flex justify-between items-center'>
-                        <img className='w-125 h-150' src={consolewhite} alt="" />
+                        <img className='w-125 h-150' src={product.thumbnail} alt="" />
                     </div>
 
                     <div className='w-99.75'>
                         <div>
-                            <h2 className='font-inter font-semibold text-2xl'>Havic HV G-92 Gamepad</h2>
+                            <h2 className='font-inter font-semibold text-2xl'>{product.title}</h2>
                         </div>
 
                         <div className='mt-4 flex gap-6'>
                             <div className='flex gap-2 text-[#FFAD33]'>
-                               <Rate allowHalf  defaultValue />
+                               <Rate allowHalf  defaultValue={product.rating} />
                             </div>
                             <div>
                                 <h4 className='text-[#807b7b] font-Poppins text-sm'>
