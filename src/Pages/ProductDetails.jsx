@@ -10,33 +10,42 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { HiOutlineArrowPathRoundedSquare } from "react-icons/hi2";
 import { Rate } from 'antd';
 import axios from 'axios';
+import SkeletonDetails from '../Components/SkeletonDetails';
 
 const ProductDetails = () => {
   let {id} = useParams();
 
   const [product, setProduct] = useState([])
   const [productImages, setProductImages] = useState([])
+  const [loading, setLoading] = useState(true)
 
 
    async function getAllData() {
+    setLoading(true)
     await axios.get(`https://dummyjson.com/products/${id}`)
       .then((res) => {
         setProduct(res.data)
         setProductImages(res.data.images)
+        setLoading(false)
       })
   }
 
   useEffect(() => {
     getAllData()
-  }, [])
+  }, [id])
 
   return (
     <>
       <Container>
         <div className='mt-5 mb-20'>
           <BreadCrumb />
-          
         </div>
+        {loading ? (
+          <div className='flex gap-7.5'>
+            <SkeletonDetails />
+            
+          </div>
+        ) : (
         <div className='flex gap-7.5'>
                     <div className='space-y-4'>
                         
@@ -65,11 +74,11 @@ const ProductDetails = () => {
 
                         <div className='mt-4 flex gap-6'>
                             <div className='flex gap-2 text-[#FFAD33]'>
-                               <Rate allowHalf  defaultValue={product.rating} />
+                               <Rate allowHalf disabled value={product.rating || 0} />
                             </div>
                             <div>
                                 <h4 className='text-[#807b7b] font-Poppins text-sm'>
-                                    5
+                                    ({product.reviews ? product.reviews.length : null} reviews)
                                 </h4>
                             </div>
                             <div className='border-[#807b7b] border-r-2'></div>
@@ -115,7 +124,7 @@ const ProductDetails = () => {
                                 <button className="w-10 h-10 border-r border-secondary hover:bg-prime">−</button>
                                 <h2 className="w-10 h-10 flex items-center justify-center hover:bg-prime">
                                     2
-                                </h2 >
+                                </h2>
                                 <button className="w-10 h-10 border-l border-secondary hover:bg-prime rounded-r-md">
                                     +
                                 </button>
@@ -147,6 +156,7 @@ const ProductDetails = () => {
                                     </div>
                                     <div>
                                         <h4 className='font-medium'>Return Delivery</h4>
+        
                                         <p className='text-[12px]'>Free 30 Days Delivery Returns. Details</p>
                                     </div>
                                 </div>
@@ -154,9 +164,10 @@ const ProductDetails = () => {
                         </div>
                     </div>
                 </div>
+        )}
       </Container>
     </>
-  )
-}
+    )}
+
 
 export default ProductDetails
