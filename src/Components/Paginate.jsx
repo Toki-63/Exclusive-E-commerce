@@ -13,6 +13,7 @@ function Items({ currentItems }) {
         currentItems.map((item,idx) => (
             <Card
             key={idx}
+            productDetails={item}
             id={item.id}
             ImgSrc={item.thumbnail}
             title={item.title}
@@ -28,8 +29,8 @@ function Items({ currentItems }) {
 }    
 const Paginate = ({ itemsPerPage}) => {
   
-  const AllProducts = useSelector((state) => state.AllProducts.value)
-  const items = AllProducts;
+  const Products = useSelector((state) => state.Products.value)
+  const items = Products;
     
   const [itemOffset, setItemOffset] = useState(0);
 

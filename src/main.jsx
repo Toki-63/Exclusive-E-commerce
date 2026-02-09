@@ -10,6 +10,7 @@ import Product from './Pages/Product.jsx';
 import { Provider } from 'react-redux'
 import store from '../src/store.js'
 import ProductDetails from './Pages/ProductDetails.jsx';
+import AddToCart from './Pages/AddToCart.jsx';
 
 
 const router = createBrowserRouter([
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { index: true, Component: Home },
       { path: "shop", Component: Product },
       { path: "productDetails/:id", Component: ProductDetails },
+      { path: "/cart", Component: AddToCart },
       
     ],
   },
