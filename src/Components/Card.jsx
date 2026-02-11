@@ -5,7 +5,7 @@ import { IoEyeOutline } from "react-icons/io5";
 import Button from './Button';
 import { Rate } from 'antd';
 import { useNavigate } from "react-router";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { CartReducer } from '../ProductSlice';
 
 
@@ -14,15 +14,25 @@ import { CartReducer } from '../ProductSlice';
 const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id,productDetails}) => {
   let navigate = useNavigate();
   const dispatch = useDispatch()
+  const cartProducts = useSelector((state) => state.Products.cart)
   
   const handleDetails = () => {
     navigate(`/productDetails/${id}`)
   }
 
   const handleAddToCart = () => {
-    
-     dispatch(CartReducer(productDetails))
+    const cartItem = {
+      id,
+      title,
+      price,
+      thumbnail: ImgSrc,
+      discount,
+      percentage,
+      rating
+    }
+    dispatch(CartReducer(cartItem))
   }
+  
 
 
   return (
