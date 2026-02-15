@@ -15,15 +15,17 @@ export const ProductSlice = createSlice({
     FilterReducer: (state,action) => {
       state.value = action.payload
     },
-    CartReducer: (state,action) => {
-     state.cart = [...state.cart,action.payload]
-     localStorage.setItem("cart",JSON.stringify(state.cart))
+    cartData: (state, action) => {
+      
+      if (!action.payload) return
+      state.cart = [...state.cart, action.payload]
+      localStorage.setItem("cart", JSON.stringify(state.cart))
     }
     
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { GetProducts,FilterReducer,CartReducer} = ProductSlice.actions
+export const { GetProducts,FilterReducer,cartData} = ProductSlice.actions
 
 export default ProductSlice.reducer

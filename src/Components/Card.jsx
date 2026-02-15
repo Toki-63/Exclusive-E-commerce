@@ -6,12 +6,12 @@ import Button from './Button';
 import { Rate } from 'antd';
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from 'react-redux';
-import { CartReducer } from '../ProductSlice';
+import { cartData } from '../ProductSlice';
 
 
 
 
-const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id,productDetails}) => {
+const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id,cart}) => {
   let navigate = useNavigate();
   const dispatch = useDispatch()
   const cartProducts = useSelector((state) => state.Products.cart)
@@ -21,16 +21,11 @@ const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id,productDe
   }
 
   const handleAddToCart = () => {
-    const cartItem = {
-      id,
-      title,
-      price,
-      thumbnail: ImgSrc,
-      discount,
-      percentage,
-      rating
-    }
-    dispatch(CartReducer(cartItem))
+    
+    const productPayload = { id, title, price, thumbnail: ImgSrc }
+    const exists = cartProducts.some((findItem) => findItem?.id == id)
+    if (exists) return 
+    dispatch(cartData(productPayload))
   }
   
 

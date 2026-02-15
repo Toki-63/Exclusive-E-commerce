@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 
-const CartItem = ({thumbnail,title,price,id}) => {
+const CartItem = ({ImgSrc,Title,Price,id}) => {
 
       const [count, setCount] = useState(0)
     
@@ -19,10 +19,10 @@ const CartItem = ({thumbnail,title,price,id}) => {
         <>
             <div className='py-6 px-10 my-10 shadow-sm flex justify-between items-center '>
                 <div className='flex gap-2 items-center'>
-                    <img className='w-10 h-10' src={thumbnail} alt="" />
-                    {title}
+                    <img className='w-10 h-10' src={ImgSrc} alt="" />
+                    {Title}
                 </div>
-                <div>${price}</div>
+                <div>${Price}</div>
                 <div className='items-center flex gap-2 py-1.5 px-3 border'>
                     {count}
                     <div className=' grid '>
@@ -30,7 +30,7 @@ const CartItem = ({thumbnail,title,price,id}) => {
                         <button onClick={handleProductDecrement} className='Block'><IoIosArrowDown /></button>
                     </div>
                 </div>
-                <div>${price}</div>
+                <div>${Price}</div>
             </div>
         </>
     )

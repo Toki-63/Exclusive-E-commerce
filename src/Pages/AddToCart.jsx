@@ -9,7 +9,7 @@ import CartItem from '../Components/CartItem'
 
 const AddToCart = () => {
 
-  const Data = useSelector((state) => state.Products.cart)
+  const cartData = useSelector((state) => state.Products.cart)
 
 
   return (
@@ -26,14 +26,20 @@ const AddToCart = () => {
 
 
         {
-          Data.map((item, idx) => (
-            <CartItem
-              key={idx}
-              price={item.price}
-              thumbnail={item.thumbnail}
-              title={item.title}
-            />
-          ))
+          cartData.map((item, idx) => {
+          
+            if (!item) return null
+            return (
+
+              <CartItem
+                key={item.id ?? idx}
+                Price={item.price}
+                ImgSrc={item.thumbnail}
+                Title={item.title}
+                id={item.id}
+              />
+            )
+          })
         }
 
         <Flex className='justify-between pt-6 pb-20 cart'>
