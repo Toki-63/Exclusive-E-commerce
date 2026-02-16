@@ -7,14 +7,27 @@ import { Rate } from 'antd';
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from 'react-redux';
 import { cartData } from '../ProductSlice';
+import { Bounce, toast } from 'react-toastify';
 
 
 
 
-const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id,cart}) => {
+const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id,}) => {
   let navigate = useNavigate();
   const dispatch = useDispatch()
   const cartProducts = useSelector((state) => state.Products.cart)
+  
+  const notify = () =>toast.success('Successfully added', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
   
   const handleDetails = () => {
     navigate(`/productDetails/${id}`)
@@ -26,6 +39,7 @@ const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id,cart}) =>
     const exists = cartProducts.some((findItem) => findItem?.id == id)
     if (exists) return 
     dispatch(cartData(productPayload))
+    notify()
   }
   
 
