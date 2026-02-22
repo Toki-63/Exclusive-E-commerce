@@ -40,7 +40,7 @@ const Banner = () => {
               <li>Health & Beauty</li>
            </ul>
           </div>
-             <div className='w-full pl-12.5 mt-10'>
+             <div className='w-full mt-10 -ml-23'>
               <Slider {...settings}>
                 <div>
                   <img src={banner} alt="" />

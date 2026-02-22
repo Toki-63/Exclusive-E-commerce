@@ -1,25 +1,40 @@
 import React, { useState } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import { useDispatch } from 'react-redux'
-import { removeCartReducer } from '../ProductSlice'
+import { DecrementReducer, IncrementReducer, removeCartReducer } from '../ProductSlice'
+import { Bounce, toast } from 'react-toastify'
 
-const CartItem = ({ImgSrc,Title,Price,id}) => {
+const CartItem = ({ImgSrc,Title,Price,id,quantity}) => {
     const dispatch = useDispatch()
 
       const [count, setCount] = useState(0)
+
+      const notify = () => toast.error('Removed', {
+          position: "top-right",
+          autoClose: 1000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+          });
     
     
-      const handleProductDecrement = () => {
-        if (count > 0) {
-          setCount(count - 1)
+      const handleIncrement = () => {
+        dispatch(IncrementReducer(id))
+      }
+      const handleDecrement = () => {
+        if(quantity > 1){
+          dispatch(DecrementReducer(id))
         }
       }
-      const handleProductIncrement = () => {
-        setCount(count + 1)
-      }
+
+
       const handleRemove = () => {
     dispatch(removeCartReducer(id))
-
+    notify()
   }
 
     return (
@@ -36,10 +51,10 @@ const CartItem = ({ImgSrc,Title,Price,id}) => {
                 </div>
                 <div>${Price}</div>
                 <div className='items-center flex gap-2 py-1.5 px-3 border'>
-                    {count}
+                    {quantity}
                     <div className=' grid '>
-                        <button onClick={handleProductIncrement} className='Block'><IoIosArrowUp /></button>
-                        <button onClick={handleProductDecrement} className='Block'><IoIosArrowDown /></button>
+                        <IoIosArrowUp onClick={handleIncrement}/>
+                        <IoIosArrowDown onClick={handleDecrement}/>
                     </div>
                 </div>
                 <div>${Price}</div>

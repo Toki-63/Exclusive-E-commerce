@@ -12,6 +12,7 @@ import { Provider } from 'react-redux'
 import store from '../src/store.js'
 import ProductDetails from './Pages/ProductDetails.jsx';
 import AddToCart from './Pages/AddToCart.jsx';
+import { ToastContainer } from 'react-toastify';
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
     <RouterProvider router={router} />
+    <ToastContainer />
     </Provider>
   </StrictMode>
 )

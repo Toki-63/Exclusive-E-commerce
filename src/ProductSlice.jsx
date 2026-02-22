@@ -16,8 +16,6 @@ export const ProductSlice = createSlice({
       state.value = action.payload
     },
     cartData: (state, action) => {
-      
-      if (!action.payload) return
       state.cart = [...state.cart, action.payload]
       localStorage.setItem("cart", JSON.stringify(state.cart))
     },
@@ -25,11 +23,23 @@ export const ProductSlice = createSlice({
      state.cart = [...state.cart.filter((item)=>item.id !==action.payload)]
      localStorage.setItem("cart", JSON.stringify(state.cart))
     },
+    IncrementReducer: (state,action) => {
+      state.cart = state.cart.map((item)=>{
+        return item.id == action.payload ? {...item , quan: item.quan+1} : item
+      })
+      localStorage.setItem("cart", JSON.stringify(state.cart))
+    },
+    DecrementReducer:(state,action) => {
+      state.cart = state.cart.map((item)=>{
+        return item.id == action.payload ? {...item , quan: item.quan-1} : item
+      })
+      localStorage.setItem("cart", JSON.stringify(state.cart))
+    }
     
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { GetProducts,FilterReducer,cartData,removeCartReducer} = ProductSlice.actions
+export const { GetProducts,FilterReducer,cartData,removeCartReducer,IncrementReducer,DecrementReducer} = ProductSlice.actions
 
 export default ProductSlice.reducer

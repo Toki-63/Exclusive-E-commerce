@@ -12,14 +12,28 @@ import { Bounce, toast } from 'react-toastify';
 
 
 
-const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id,}) => {
+const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id,productDetails}) => {
   let navigate = useNavigate();
   const dispatch = useDispatch()
   const cartProducts = useSelector((state) => state.Products.cart)
   
-  const notify = () =>toast.success('Successfully added', {
+  const notify = (matchItem) =>{
+    matchItem == undefined ?
+    toast.success('Successfully added', {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        })
+        :
+    toast.warn('Already added', {
+        position: "top-right",
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: false,
         pauseOnHover: true,
@@ -28,18 +42,18 @@ const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id,}) => {
         theme: "light",
         transition: Bounce,
         });
+  }
   
   const handleDetails = () => {
     navigate(`/productDetails/${id}`)
   }
 
   const handleAddToCart = () => {
-    
-    const productPayload = { id, title, price, thumbnail: ImgSrc }
-    const exists = cartProducts.some((findItem) => findItem?.id == id)
-    if (exists) return 
-    dispatch(cartData(productPayload))
-    notify()
+    const matchItem = cartProducts.find((findItem) => findItem.id == id)
+    if(!matchItem){
+      dispatch(cartData({...productDetails,quan : 1}))
+    }
+    notify(matchItem)
   }
   
 

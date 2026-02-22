@@ -37,6 +37,7 @@ const AddToCart = () => {
                 ImgSrc={item.thumbnail}
                 Title={item.title}
                 id={item.id}
+                quantity={item.quan}
               />
             )
           })
