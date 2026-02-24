@@ -10,6 +10,7 @@ import CartItem from '../Components/CartItem'
 const AddToCart = () => {
 
   const cartData = useSelector((state) => state.Products.cart)
+  const Subtotal = useSelector((state) => state.Products.SubTotal)
 
 
   return (
@@ -61,7 +62,7 @@ const AddToCart = () => {
             <h2 className='text-lg font-medium pt-8'>Cart total</h2>
             <div className='flex justify-between border-b-2 border-secondary pb-4'>
               <p>SubTotal</p>
-              <span>$</span>
+              <span>${Number(Subtotal).toFixed(2)}</span>
             </div>
             <div className='flex justify-between border-b-2 border-secondary py-4'>
               <p>Shipping</p>
@@ -69,7 +70,7 @@ const AddToCart = () => {
             </div>
             <div className='flex justify-between border-b-2 border-secondary py-4 '>
               <p>Total</p>
-              <span>$</span>
+              <span>${Number(Subtotal).toFixed(2)}</span>
             </div>
             <div className='mt-8 mb-12 text-center'>
               <Button> Procees to checkout </Button>

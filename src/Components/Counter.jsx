@@ -4,7 +4,7 @@ import { countDownDateAndTime } from 'countdown-date-time';
 
 const Counter = ({className}) => {
 
-   const conduct_date = '2026-02-18 00:00:00';
+   const conduct_date = '2026-03-14 00:00:00';
    const [count, setCount] = useState({})
 
    useEffect(()=>{

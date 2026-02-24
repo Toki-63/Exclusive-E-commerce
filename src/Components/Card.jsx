@@ -6,7 +6,7 @@ import Button from './Button';
 import { Rate } from 'antd';
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from 'react-redux';
-import { cartData } from '../ProductSlice';
+import { cartData, SubTotalReducer } from '../ProductSlice';
 import { Bounce, toast } from 'react-toastify';
 
 
@@ -52,6 +52,7 @@ const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id,productDe
     const matchItem = cartProducts.find((findItem) => findItem.id == id)
     if(!matchItem){
       dispatch(cartData({...productDetails,quan : 1}))
+      dispatch(SubTotalReducer())
     }
     notify(matchItem)
   }

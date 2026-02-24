@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
   value: [],
   cart : JSON.parse(localStorage.getItem("cart")) || [],
+  SubTotal : 0
 } 
 
 export const ProductSlice = createSlice({
@@ -34,12 +35,15 @@ export const ProductSlice = createSlice({
         return item.id == action.payload ? {...item , quan: item.quan-1} : item
       })
       localStorage.setItem("cart", JSON.stringify(state.cart))
-    }
-    
-  },
+    },
+    SubTotalReducer:(state) => {
+      state.SubTotal = state.cart.reduce((current,item)=>current + (item.quan * item.price),0)
+      }
+    },
+
 })
 
 // Action creators are generated for each case reducer function
-export const { GetProducts,FilterReducer,cartData,removeCartReducer,IncrementReducer,DecrementReducer} = ProductSlice.actions
+export const { GetProducts,FilterReducer,cartData,removeCartReducer,IncrementReducer,DecrementReducer,SubTotalReducer} = ProductSlice.actions
 
 export default ProductSlice.reducer

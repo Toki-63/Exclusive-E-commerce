@@ -33,7 +33,10 @@ const Navbar = () => {
                   <NavLink to="/shop" end>
                     Shop
                   </NavLink></li>
-                <li className='hover:border-b'>Contact</li>
+                <li className='hover:border-b'>
+                  <NavLink to="/contact" end>
+                    Contact
+                  </NavLink></li>
                 <li className='hover:border-b'>About</li>
                 <li className='hover:border-b'>Sign Up</li>
               </ul>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import { useDispatch } from 'react-redux'
-import { DecrementReducer, IncrementReducer, removeCartReducer } from '../ProductSlice'
+import { DecrementReducer, IncrementReducer, removeCartReducer, SubTotalReducer } from '../ProductSlice'
 import { Bounce, toast } from 'react-toastify'
 
 const CartItem = ({ImgSrc,Title,Price,id,quantity}) => {
@@ -24,16 +24,19 @@ const CartItem = ({ImgSrc,Title,Price,id,quantity}) => {
     
       const handleIncrement = () => {
         dispatch(IncrementReducer(id))
+        dispatch(SubTotalReducer())
       }
       const handleDecrement = () => {
         if(quantity > 1){
           dispatch(DecrementReducer(id))
+          dispatch(SubTotalReducer())
         }
       }
 
 
       const handleRemove = () => {
     dispatch(removeCartReducer(id))
+    dispatch(SubTotalReducer())
     notify()
   }
 
@@ -57,7 +60,7 @@ const CartItem = ({ImgSrc,Title,Price,id,quantity}) => {
                         <IoIosArrowDown onClick={handleDecrement}/>
                     </div>
                 </div>
-                <div>${Price}</div>
+                <div>${Number(quantity * Price).toFixed(2)}</div>
             </div>
         </>
     )
