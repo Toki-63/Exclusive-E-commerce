@@ -38,7 +38,10 @@ const Navbar = () => {
                     Contact
                   </NavLink></li>
                 <li className='hover:border-b'>About</li>
-                <li className='hover:border-b'>Sign Up</li>
+                <li className='hover:border-b'>
+                  <NavLink to="/signup" end>
+                    Sign Up
+                  </NavLink></li>
               </ul>
             </div>
             <div className='flex items-center gap-6'>
