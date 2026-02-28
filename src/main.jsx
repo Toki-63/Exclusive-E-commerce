@@ -15,6 +15,9 @@ import AddToCart from './Pages/AddToCart.jsx';
 import { ToastContainer } from 'react-toastify';
 import Contact from './Pages/Contact.jsx'
 import SignUp from './Pages/SignUp.jsx'
+import Login from './Pages/Login.jsx'
+import About from './Pages/About.jsx'
+import Account from './Pages/Account.jsx'
 
 
 const router = createBrowserRouter([
@@ -28,6 +31,9 @@ const router = createBrowserRouter([
       { path: "/cart", Component: AddToCart },
       { path: "/contact", Component: Contact },
       { path: "/signup", Component: SignUp },
+      { path: "/login", Component: Login },
+      { path: "/about", Component: About },
+      { path: "/account", Component: Account },
       
     ],
   },

@@ -60,7 +60,9 @@ const SignUp = () => {
 
             <div className='flex gap-2 items-center mt-8 text-center justify-center'>
               <p>Already have account?</p>
-              <h6 className='hover:border-b hover:border-black font-medium'>Log in</h6>
+              <NavLink to="/login" end>
+                 <h6 className='hover:border-b hover:border-black font-medium'>Log in</h6>
+              </NavLink>
             </div>
 
           </div>

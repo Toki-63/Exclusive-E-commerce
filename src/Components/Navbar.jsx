@@ -5,6 +5,7 @@ import { GoHeart } from "react-icons/go";
 import { GrCart } from "react-icons/gr";
 import { NavLink, useNavigate } from "react-router";
 import { useSelector } from 'react-redux'
+import { LuUser } from "react-icons/lu";
 
 
 const Navbar = () => {
@@ -37,7 +38,10 @@ const Navbar = () => {
                   <NavLink to="/contact" end>
                     Contact
                   </NavLink></li>
-                <li className='hover:border-b'>About</li>
+                <li className='hover:border-b'>
+                  <NavLink to="/about" end>
+                    About
+                  </NavLink></li>
                 <li className='hover:border-b'>
                   <NavLink to="/signup" end>
                     Sign Up
@@ -58,6 +62,9 @@ const Navbar = () => {
                     </div>
                 </NavLink>
               </div>
+              <NavLink to="/account" end  className='text-2xl'>
+                <LuUser />
+              </NavLink>
             </div>
           </div>
         </div>
