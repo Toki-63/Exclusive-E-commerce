@@ -53,14 +53,29 @@ const Navbar = () => {
                 <input type="text" placeholder='What are you looking for?' className='bg-[#F5F5F5] text-sm py-1.75 pe-17.5 ps-5 outline-none rounded-sm' />
                 <HiMiniMagnifyingGlass className='absolute top-1.75 right-1.75 text-[20px]' />
               </div>
-              <div className='flex items-center gap-4 relative'>
+
+
+
+              <div className='flex items-center gap-4'>
+
+
+              <div className='relative'>
                 <GoHeart  className=' text-xl ' />
+                <div className='absolute -top-1 -right-2 h-4 w-4 font-medium bg-prime rounded-full flex items-center justify-center text-[10px] text-white'>
+                      {Data.length}
+                    </div>
+              </div>
+
+
+
+              <div className='relative'>
                 <NavLink to="/cart" end>
                 <GrCart className=' text-xl' />
                 <div className='absolute -top-1 -right-2 h-4 w-4 font-medium bg-prime rounded-full flex items-center justify-center text-[10px] text-white'>
                       {Data.length}
                     </div>
                 </NavLink>
+              </div>
               </div>
               <NavLink to="/account" end  className='text-2xl'>
                 <LuUser />
