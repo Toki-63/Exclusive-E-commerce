@@ -12,6 +12,7 @@ const Navbar = () => {
 
   
   const Data = useSelector((state) => state.Products.cart)
+  const wData = useSelector((state) => state.Products.wish)
   
 
 
@@ -60,10 +61,12 @@ const Navbar = () => {
 
 
               <div className='relative'>
+                <NavLink to="/wishlist" end>
                 <GoHeart  className=' text-xl ' />
                 <div className='absolute -top-1 -right-2 h-4 w-4 font-medium bg-prime rounded-full flex items-center justify-center text-[10px] text-white'>
-                      {Data.length}
+                      {wData.length}
                     </div>
+                </NavLink>
               </div>
 
 

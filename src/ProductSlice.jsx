@@ -29,6 +29,10 @@ export const ProductSlice = createSlice({
      state.cart = [...state.cart.filter((item)=>item.id !==action.payload)]
      localStorage.setItem("cart", JSON.stringify(state.cart))
     },
+    removeWishReducer: (state,action) => {
+     state.wish = [...state.wish.filter((item)=>item.id !==action.payload)]
+     localStorage.setItem("wish", JSON.stringify(state.wish))
+    },
     IncrementReducer: (state,action) => {
       state.cart = state.cart.map((item)=>{
         return item.id == action.payload ? {...item , quan: item.quan+1} : item
@@ -49,6 +53,6 @@ export const ProductSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { GetProducts,FilterReducer,cartData,removeCartReducer,IncrementReducer,DecrementReducer,SubTotalReducer} = ProductSlice.actions
+export const { GetProducts,FilterReducer,cartData,removeCartReducer,IncrementReducer,DecrementReducer,SubTotalReducer,wishList,removeWishReducer} = ProductSlice.actions
 
 export default ProductSlice.reducer
