@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logo from "../assets/Exclusive.png"
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
 import { GoHeart } from "react-icons/go";
@@ -10,10 +10,25 @@ import { LuUser } from "react-icons/lu";
 
 const Navbar = () => {
 
-  
+  const navigate = useNavigate();
   const Data = useSelector((state) => state.Products.cart)
   const wData = useSelector((state) => state.Products.wish)
-  
+  const products = useSelector((state) => state.Products.value)
+
+
+  const [search, setSearch] = useState("")
+  const [searchProducts, setSearchProducts] = useState([])
+
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearch(value);
+    if(value.trim() === '') {
+      setSearchProducts([]);
+    } else{
+      setSearchProducts(products.filter((item) => item.title.toLowerCase().includes(value.toLowerCase())))
+    }
+  }
 
 
 
@@ -51,8 +66,25 @@ const Navbar = () => {
             </div>
             <div className='flex items-center gap-6'>
               <div className='relative'>
-                <input type="text" placeholder='What are you looking for?' className='bg-[#F5F5F5] text-sm py-1.75 pe-17.5 ps-5 outline-none rounded-sm' />
+                <input
+                onChange={handleSearch} 
+                value={search}
+                type="text" placeholder='What are you looking for?' className='bg-[#F5F5F5] text-sm py-1.75 pe-17.5 ps-5 outline-none rounded-sm' />
                 <HiMiniMagnifyingGlass className='absolute top-1.75 right-1.75 text-[20px]' />
+                <div className='absolute bg-white top-12 lg:w-[243px] w-[90%] max-h-60 overflow-y-auto z-10'>
+                  {searchProducts.map((item) => (
+                    <div className='flex gap-3 items-center border-b-2 border-gray-200 '
+                    onClick={()=>{
+                      navigate(`/productDetails/${item.id}`)
+                      setSearch('')
+                      setSearchProducts([])
+                    }}>
+                      <img src={item.thumbnail} alt="" className="w-10 h-10" />
+                        {item.title}
+                    </div>
+                  ))
+                  }
+                </div>
               </div>
 
 
