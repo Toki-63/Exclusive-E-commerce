@@ -9,14 +9,14 @@ const SignUp = () => {
   return (
     <>
       <Container>
-        <div className='mt-20'>
+        <div className='lg:mt-20 mt-5'>
           <BreadCrumb />
         </div>
-        <div className='mt-15 flex'>
+        <div className='lg:mt-15 mt-5 flex'>
           <div className='absolute left-0'>
-            <img src={SignUpImg} alt="#" className='h-185.25 opacity-100 flex' />
+            <img src={SignUpImg} alt="#" className='lg:h-185.25 h-149 lg:opacity-100 opacity-15 lg:flex' />
           </div>
-          <div className='pl-187.25 mt-31.25 z-1'>
+          <div className='lg:pl-187.25 pl-5 lg:mt-31.25 z-1'>
 
             <h4 className='text-[36px] font-medium font-Inter'>Create an account</h4>
             <p className='font-Poppins mt-6'>Enter your details below</p>

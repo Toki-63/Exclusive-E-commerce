@@ -8,7 +8,7 @@ const BreadCrumb = ({className}) => {
 
 
   return (
-    <div className={`${className} flex gap-4`}>
+    <div className={`${className} flex gap-4 pl-4 lg:pl-0`}>
       <h2 className='text-gray-400 text-sm'>home</h2>
       <h2 className='text-gray-400 text-sm'>/</h2>
       <h2 className='text-gray-400 text-sm'>{LocationPath}</h2>

@@ -7,14 +7,14 @@ const Login = () => {
   return (
     <>
       <Container>
-                <div className='mt-20'>
+                <div className='lg:mt-20 mt-5'>
                     <BreadCrumb />
                 </div>
-                <div className='mt-15 pb-35 flex'>
+                <div className='mt-5 lg:mt-15 lg:pb-35 flex'>
                     <div className='absolute left-0'>
-                        <img src={SignUpImg} alt="#" className='h-175 opacity-100 flex' />
+                        <img src={SignUpImg} alt="#" className='lg:h-175 h-100 lg:opacity-100 lg:flex' />
                     </div>
-                    <div className='pl-187.25 mt-31.25 z-1'>
+                    <div className='lg:pl-187.25 pl-5 lg:mt-31.25 z-1'>
 
                         <h4 className='text-[36px] font-medium font-Inter'>Log in into Exlusive</h4>
                         <p className='font-Poppins mt-6'>Enter your details below</p>

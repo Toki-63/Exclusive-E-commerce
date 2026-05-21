@@ -9,10 +9,10 @@ const Contact = () => {
   return (
     <>
       <Container>
-        <div className="my-20">
+        <div className="lg:my-20 my-5">
           <BreadCrumb />
         </div>
-        <div className="flex flex-row gap-10 font-Poppins">
+        <div className="flex flex-col-reverse lg:flex-row gap-10 font-Poppins">
           <div className="shadow p-10 rounded-sm w-85 mx-auto">
             <span className="flex items-center gap-3 text-2xl font-medium mb-6">
               <div className="text-white p-2.5 bg-prime rounded-full flex justify-center items-center">
@@ -35,8 +35,8 @@ const Contact = () => {
             <h2 className="text-sm">Emails: support@exclusive.com</h2>
           </div>
 
-          <div className="shadow px-7.75 py-10 w-200 mx-auto rounded-sm">
-            <div className="flex flex-row gap-4">
+          <div className="shadow px-7.75 py-10 lg:w-200 w-85 mx-auto rounded-sm">
+            <div className="flex lg:flex-row flex-col gap-4">
               <div>
                 <input type="text"
                   placeholder="Your Name *"
