@@ -58,7 +58,7 @@ const Footer = () => {
               <h2 className='text-xl font-medium font-poppins'>Download App</h2>
               <p className='text-xs font-poppins lg:font-medium font-bold lg:pt-6 lg:pb-4 pt-3 pb-1'>Save $3 with App New User Only</p>
               <img src={QR} alt="" className='mx-auto lg:mx-0' />
-              <div className='flex lg:justify-around  gap-6 mx-auto ml-30 text-2xl lg:mt-0 mt-4'>
+              <div className='flex lg:justify-around  gap-6 mx-auto lg:ml-0 ml-30 text-2xl  mt-4'>
                 <FaFacebookF />
                 <CiTwitter />
                 <FaInstagram />
