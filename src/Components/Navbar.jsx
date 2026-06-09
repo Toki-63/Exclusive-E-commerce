@@ -6,6 +6,7 @@ import { GrCart } from "react-icons/gr";
 import { NavLink, useNavigate } from "react-router";
 import { useSelector } from 'react-redux'
 import { LuUser } from "react-icons/lu";
+import { AiOutlineBars } from "react-icons/ai";
 
 
 const Navbar = () => {
@@ -30,18 +31,24 @@ const Navbar = () => {
     }
   }
 
+  const [show, setShow] = useState(false)
+  const handleClick = () => {
+    setShow(!show)
+  }
+
 
 
   return (
     <>
-      <nav className='pt-10 pb-4  border-b border-[#00000044]'>
+      <nav className='lg:pt-10 pt-4 pb-4  border-b border-[#00000044] relative z-10'>
         <div className="container">
           <div className="flex justify-between">
-            <div>
+            <div className='w-[25%] pl-2.5 lg:pl-0'>
               <img src={logo} alt="" />
             </div>
+            <div className={`${show ? 'block':'hidden'} lg:flex absolute justify-between items-center lg:text-black top-15 lg:static lg:bg-transparent text-white bg-black lg:w-[75%] w-full pl-4 lg:pl-0 py-4 lg:py-0 `}>
             <div>
-              <ul className='flex gap-12'>
+              <ul className='lg:flex flex-wrap lg:gap-12 leading-6 lg:leading-0 z-auto'>
                 <li className='hover:border-b'>     
                   <NavLink to="/" end>
                     Home
@@ -116,7 +123,9 @@ const Navbar = () => {
                 <LuUser />
               </NavLink>
             </div>
+            </div>
           </div>
+          <AiOutlineBars onClick={handleClick} className='lg:hidden block text-3xl pl-2.5 text-center right-2.5 top-2.5 absolute cursor-pointer'/>
         </div>
       </nav>
     </>

@@ -5,7 +5,7 @@ import { countDownDateAndTime } from 'countdown-date-time';
 
 
 const JblCounter = ({className}) => {
-    const conduct_date = '2026-03-14 00:00:00';
+    const conduct_date = '2026-6-14 00:00:00';
        const [count, setCount] = useState({})
     
        useEffect(()=>{
