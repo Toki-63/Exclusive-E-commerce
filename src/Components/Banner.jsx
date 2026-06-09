@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import banner from "../assets/banner.jpg"
+import { BiCategory } from "react-icons/bi";
 
 const Banner = () => {
+
+  const [show, setShow] = useState(false);
+  const handleClick = () => {
+    setShow(!show)
+  }
+
+
   const settings = {
     dots: true,
     infinite: true,
@@ -26,9 +34,15 @@ const Banner = () => {
   return (
     <div>
       <div className="container">
-        <div className="flex">
-          <div className='border-r border-[#00000044] pr-5.5'>
-           <ul className='banner-ul flex flex-col gap-y-4 mt-10'>
+        <div className="lg:flex">
+
+        <div className="flex lg:hidden items-center gap-2 text-2xl font-bold pl-2.5 mt-5">
+          <BiCategory onClick={handleClick} className="lg:hidden cursor-pointer" />
+          <h2>Category</h2>
+        </div>
+
+          <div className={`${show ? 'block' : 'hidden'} lg:border-r border-[#00000044] pr-5.5`}>
+           <ul className='banner-ul flex flex-col lg:gap-y-4 mt-10'>
               <li className='flex justify-between items-center'>Woman’s Fashion <MdOutlineKeyboardArrowRight  className='text-2xl'/></li>
               <li className='flex justify-between items-center'>Men’s Fashion <MdOutlineKeyboardArrowRight  className='text-2xl'/></li>
               <li>Electronics</li>
@@ -40,7 +54,7 @@ const Banner = () => {
               <li>Health & Beauty</li>
            </ul>
           </div>
-             <div className='w-full mt-10 -ml-23'>
+             <div className='w-full mt-6 lg:mt-10 lg:-ml-23'>
               <Slider {...settings}>
                 <div>
                   <img src={banner} alt="" />

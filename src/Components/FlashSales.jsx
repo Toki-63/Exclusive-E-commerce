@@ -53,14 +53,14 @@ const FlashSales = () => {
 
 
   return (
-    <div className='mt-41.25'>
+    <div className='lg:mt-41.25 mt-10'>
       <div className="container">
-        <div className='flex gap-22'>
+        <div className='flex lg:gap-10'>
           <SecHeading 
             title="Today’s"
             heading="Flash Sales"
             />
-            <Counter className='self-end'/>
+            <Counter className='self-start'/>
         </div>
          <div className='slider-container mt-10'>
           <Slider {...settings}>
