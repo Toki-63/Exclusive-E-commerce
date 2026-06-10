@@ -41,7 +41,7 @@ const Banner = () => {
           <h2>Category</h2>
         </div>
 
-          <div className={`${show ? 'block' : 'hidden'} lg:border-r border-[#00000044] pr-5.5`}>
+          <div className={`${show ? 'block' : 'hidden'} lg:border-r border-[#00000044] pr-5.5 lg:block`}>
            <ul className='banner-ul flex flex-col lg:gap-y-4 mt-10'>
               <li className='flex justify-between items-center'>Woman’s Fashion <MdOutlineKeyboardArrowRight  className='text-2xl'/></li>
               <li className='flex justify-between items-center'>Men’s Fashion <MdOutlineKeyboardArrowRight  className='text-2xl'/></li>

@@ -98,29 +98,29 @@ const Card = ({ImgSrc,title,price,discount,review,percentage,rating,id,productDe
 
 
   return (
-    <div className='w-67.5 group'>
+    <div className='lg:w-67.5 w-45  group'>
       <div className="card relative rounded-sm overflow-hidden">
         <img src={ImgSrc} alt="" onClick={handleDetails} className='cursor-pointer' />
-        <h5 className='absolute top-3 left-3 py-1 px-3 bg-prime text-xs text-white rounded-sm'>-{percentage}%</h5>
+        <h5 className='absolute lg:top-3 lg:left-3 left-1.5 top-1 lg:py-1 lg:px-3 px-1 bg-prime text-xs text-white rounded-sm'>-{percentage}%</h5>
         <div className='absolute top-3 right-3 flex flex-col gap-y-4'>
           {
-           !isInWishlist ? <CiHeart onClick={handleWish} className='text-2xl w-8.5 h-8.5 bg-white rounded-full flex justify-center items-center'/> :
-           <RiHeart3Fill onClick={handleWish} className='text-2xl w-8.5 h-8.5 text-prime rounded-full flex justify-center items-center'/>
+           !isInWishlist ? <CiHeart onClick={handleWish} className='text-2xl w-6 h-6 lg:w-8.5 lg:h-8.5 bg-white rounded-full flex justify-center items-center'/> :
+           <RiHeart3Fill onClick={handleWish} className='text-2xl w-6 h-6 lg:w-8.5 lg:h-8.5 text-prime rounded-full flex justify-center items-center'/>
           }
-          <IoEyeOutline className='text-2xl w-8.5 h-8.5 bg-white rounded-full flex justify-center items-center'/>
+          <IoEyeOutline className='text-2xl w-6 h-6 lg:w-8.5 lg:h-8.5 bg-white rounded-full flex justify-center items-center'/>
         </div>
         <div className='cart'>
-           <button onClick={handleAddToCart} className='absolute bg-black text-white block w-full py-2 px-21.75 font-pop cursor-pointer -bottom-10 group-hover:bottom-0 ease-linear duration-400'> Add to cart</button>
+           <button onClick={handleAddToCart} className='absolute bg-black text-white block w-full lg:py-2 px-21.75 font-pop cursor-pointer -bottom-10 group-hover:bottom-0 ease-linear duration-400 '> Add to cart</button>
         </div>
       </div>
 
-      <h2 className='mt-4'>{title}</h2>
+      <h2 className='mt-4 font-medium'>{title}</h2>
       <div className='flex gap-3 mt-2 mb-2'>
         <h3 className='text-prime'>${price}</h3>
         <h3 className='text-gray-400 line-through'>${discount}</h3>
       </div>
-      <div className='flex items-center gap-2'>
-       <Rate allowHalf  defaultValue={rating} />
+      <div className='flex items-center gap-2 text-sm'>
+       <Rate allowHalf  defaultValue={rating}/>
         <h5 className='text-gray-400'>({review})</h5>
       </div>
     </div>
