@@ -17,7 +17,7 @@ function SampleNextArrow(props) {
   const {onClick } = props;
   return (
     <div
-      className='absolute -top-20 right-8 bg-gray-300 rounded-full p-4'
+      className='absolute -top-22 right-18 lg:right-8 bg-gray-300 rounded-full lg:p-4 p-2.75'
       onClick={onClick}
     >
       <FaArrowRight />
@@ -30,7 +30,7 @@ function SamplePrevArrow(props) {
   const {onClick } = props;
   return (
     <div
-      className='absolute -top-20 right-23 bg-gray-300 rounded-full p-4'
+      className='absolute -top-22 right-30 lg:right-23 bg-gray-300 rounded-full lg:p-4 p-2.75'
       onClick={onClick}
       >
         <FaArrowLeft />
@@ -46,7 +46,33 @@ const Categories = () => {
     slidesToShow: 6,
     slidesToScroll: 6,
     nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 6,
+                    slidesToScroll: 6,
+                    infinite: true,
+                    dots: false
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    initialSlide: 2
+                }
+            },
+            {
+                breakpoint: 576,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            }
+        ]
    };
   return (
     <div>
